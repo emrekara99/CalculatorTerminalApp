@@ -1,38 +1,38 @@
 import kotlin.math.E
 
 fun main() {
-    println("Merhaba Hoş Geldiniz :D")
+    println("Hello Welcome!")
     println("-----------------------------")
     while (true) {
-        println("İlk Sayıyı giriniz:")
+        println("Enter The First Number:")
         val firstNumber: Float? = readln().toFloatOrNull()
         if (firstNumber == null) {
-            println("Geçersiz Değer Girdiniz Tekrar Deneyiniz")
+            println("You Entered An Invalid Value")
             continue
         }
-        println("İşlemi Giriniz:'+','-','/','*'")
+        println("Enter The Operator:'+','-','/','*'")
         val operator : String = readln()
         if (operator.isEmpty() || !mutableListOf("+","-","/","*").contains(operator)){
-            println("Yanlış Değer Girdiniz:")
+            println("You Entered An Invalid Value")
             continue
         }
-        println("İkinci Sayıyı Giriniz:")
+        println("Enter The Second Number:")
         val secondNumber: Float? = readln().toFloatOrNull()
         if (secondNumber == null) {
-            println("Geçersiz Değer Girdiniz")
+            println("You Entered An Invalid Value")
             continue
         }
         val result = calculator(firstNumber, secondNumber, operator)
         if (secondNumber.toInt() == 0){
-            println("Sonuç : Error")
+            println("Result : Error")
         }else{
-            println("Sonuç: $result ")
+            println("Result: $result ")
         }
-        println("Devam Etmek İstiyor musunuz? Evet[E], Hayır[H]")
+        println("Do you want to continue? Yes[Y], No[N]")
         val continueOrNot = readln()
-        if (continueOrNot == "E"){
+        if (continueOrNot == "Y"){
             continue
-        }else if(continueOrNot == "H"){
+        }else if(continueOrNot == "N"){
             break
         }
     }
@@ -45,12 +45,12 @@ fun calculator(firstNo: Float, secondNo: Float, operator: String): Any {
         "-" -> firstNo - secondNo
         "*" -> firstNo * secondNo
         "/" -> if (secondNo.toInt() == 0){
-            println("Bir sayı 0'a Bölünemez Tekrar Deneyiniz:")
+            println("A number cannot be divisible by 0. Try Again:")
         }else{
             firstNo / secondNo
         }
         else -> {
-            println("Tekrar Deneyiniz")
+            println("Try Again")
         }
     }
     return result
