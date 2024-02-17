@@ -1,60 +1,48 @@
-fun main() {
-    println("Hello, Welcome")
-    startUserInteraction()
+fun main()  {
+
 }
+class Calculator (firstNumber: Float, secondNumber: Float, operator: String){
+    val firstNo : Float?
+    val secondNo : Float?
 
-fun startUserInteraction() {
-    println("please enter the first number")
-    val firstNumber = readln()
-
-    if (!firstNumber.isNumeric()) {
-        println("something wrong i can feel it.")
-        startUserInteraction()
+    init {
+        println("Enter First Number")
+        firstNo = readln()?.toFloatOrNull()
+        println("Enter Second Number")
+        secondNo = readln()?.toFloatOrNull()
     }
+    fun calculate (firstNumber : Float , secondNumber : Float, operator : String){
+        println("Enter the operator + - / *")
+        val operator = readln()
 
-    println("Specify the mathematical operation you want to perform (+, -, *, /):")
-    val operation = readln()
+        when(operator){
+            "+" -> println("Result : ${sum()}")
+            "-" -> println("Result : ${minus()}")
+            "*" -> println("Result : ${times()}")
+            "/" -> println("Result : ${divide()}")
 
-    println("please enter the second number")
-    val secondNumber = readln()
-
-    if (!secondNumber.isNumeric()) {
-        println("something wrong i can feel it.")
-        startUserInteraction()
-    }
-    val firstNumberInDouble = firstNumber.toDouble()
-    val secondNumberInDouble = secondNumber.toDouble()
-
-    val calculateResult = when (operation) {
-        "+" -> firstNumberInDouble + secondNumberInDouble
-        "-" -> firstNumberInDouble - secondNumberInDouble
-        "*" -> firstNumberInDouble * secondNumberInDouble
-        "/" -> firstNumberInDouble / secondNumberInDouble
-        else -> "You entered the wrong operator."
-    }
-
-    println(calculateResult)
-    askForRetry()
-}
-
-fun askForRetry() {
-    println("continue or ok? (Y/N)")
-    when (val answer = readln().uppercase()) {
-        "Y" -> {
-            startUserInteraction()
+            }
         }
 
-        "N" -> {
-            println("Goodbye")
-        }
 
-        else -> {
-            println("$answer input is invalid, check your answer")
-            askForRetry()
+    private fun sum() : Float{
+        return firstNo!! + secondNo!!
+
+    }
+    private fun minus() : Float{
+      return  firstNo!! - secondNo!!
+    }
+
+    private fun divide() : Float{
+        return if (secondNo?.toInt() != 0){
+            firstNo!! / secondNo!!
+        }else{
+            println("Cannot Divide By Zer0")
+            0f
         }
     }
-}
+    private fun times() : Float {
+        return firstNo!! * secondNo!!
+    }
 
-fun String.isNumeric(): Boolean {
-    return this.all { char -> char.isDigit() }
 }
