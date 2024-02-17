@@ -11,9 +11,9 @@ fun main() {
             continue
         }
         println("Enter The Operator:'+','-','/','*'")
-        val operator : String = readln()
-        if (operator.isEmpty() || !mutableListOf("+","-","/","*").contains(operator)){
-            println("You Entered An Invalid Value")
+        val operator: String = readln()
+        if (operator.isEmpty() || !mutableListOf("+", "-", "/", "*").contains(operator)) {
+            println("You Entered Wrong Operator")
             continue
         }
         println("Enter The Second Number:")
@@ -23,35 +23,39 @@ fun main() {
             continue
         }
         val result = calculator(firstNumber, secondNumber, operator)
-        if (secondNumber.toInt() == 0){
+        if (secondNumber.toInt() == 0) {
             println("Result : Error")
-        }else{
+        } else {
             println("Result: $result ")
         }
         println("Do you want to continue? Yes[Y], No[N]")
         val continueOrNot = readln()
-        if (continueOrNot == "Y"){
+        if (continueOrNot == "Y" || continueOrNot == "y" || continueOrNot == "Yes") {
             continue
-        }else if(continueOrNot == "N"){
+        } else if (continueOrNot == "N" || continueOrNot == "n" || continueOrNot == "No") {
+            println("Good Bye")
             break
+        }else {
+            println("Lütfen 'N' ya da 'Y' yazınız")
         }
     }
 }
 
-fun calculator(firstNo: Float, secondNo: Float, operator: String): Any {
+fun calculator(firstNo: Float, secondNo: Float, operator: String): Float {
 
-    val result : Any = when (operator) {
+    val result: Any = when (operator) {
         "+" -> firstNo + secondNo
         "-" -> firstNo - secondNo
         "*" -> firstNo * secondNo
-        "/" -> if (secondNo.toInt() == 0){
+        "/" -> if (secondNo.toInt() == 0) {
             println("A number cannot be divisible by 0. Try Again:")
-        }else{
+        } else {
             firstNo / secondNo
         }
+
         else -> {
             println("Try Again")
         }
     }
-    return result
+    return result as Float
 }
